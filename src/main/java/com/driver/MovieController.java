@@ -40,23 +40,23 @@ public class MovieController {
     //get
     // get movie
         @GetMapping("/get-movie-by-name/{name}")
-    public ResponseEntity<Movie> getMovieByName(@PathVariable("name") String name){
+    public ResponseEntity<Movie> getMovieByName(@PathVariable("name") String mname){
         Movie x = null;
-        x=movieservice.getMovieByName(name);
+        x=movieservice.getMovieByName(mname);
         return new ResponseEntity<>(x, HttpStatus.OK);
     }
     // get director
     @GetMapping("/get-director-by-name/{name}")
-    public ResponseEntity<Director> getDirectorByName(@PathVariable("name") String name){
+    public ResponseEntity<Director> getDirectorByName(@PathVariable("name") String dname){
         Director x= null;
-        x=movieservice.getDirectorByName(name);
+        x=movieservice.getDirectorByName(dname);
         return new ResponseEntity<>(x, HttpStatus.OK);
     }
     //getMoviesByDirectorName
     @GetMapping("/get-movies-by-director-name/{director}")
-    public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable("director") String director){
+    public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable("director") String dname){
         List<String> x = new ArrayList<>();
-        x=movieservice.getMoviesByDirectorName(director);
+        x=movieservice.getMoviesByDirectorName(dname);
         return new ResponseEntity<>(x, HttpStatus.OK);
     }
     //Get List of all movies added
@@ -69,7 +69,7 @@ public class MovieController {
 
     //delete
     // Delete a director and its movies from the records
-    @DeleteMapping("/delete-director-by-name")
+        @DeleteMapping("/delete-director-by-name")
     public ResponseEntity<String> deleteDirectorByName(@RequestParam String dname){
         movieservice.deleteDirectorByName(dname);
         return new ResponseEntity<>("Director and its movies are deleted from records successfully", HttpStatus.OK);
