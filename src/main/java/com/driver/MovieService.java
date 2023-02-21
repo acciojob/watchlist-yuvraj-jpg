@@ -67,15 +67,22 @@ public class MovieService {
         }
         return list;
     }
-    public void deleteDirectorByName(String dname){
-         Director director = movieRepository.directorcollection.get(dname);
-         movieRepository.directorcollection.remove(director);
-         List<Movie> list = movieRepository.pair.get(director);
-         for(Movie movie : list){
-             movieRepository.moviecollection.remove(movie.getName());
-         }
-         movieRepository.pair.remove(director);
+    void deleteDirectorByName(String directorName) {
+
+        Director director = movieRepository.directorcollection.get(directorName);
+
+        movieRepository.directorcollection.remove(directorName);
+
+        List <Movie> listOfMovies = movieRepository.pair.get(director);
+        for( Movie movie : listOfMovies) {
+            String movieName = movie.getName();
+            movieRepository.moviecollection.remove(movieName);
+        }
+
+        movieRepository.pair.remove(director);
+
     }
+
     public void deleteAllDirectors(){
          for(List<Movie> list : movieRepository.pair.values()){
              for(Movie movie : list){

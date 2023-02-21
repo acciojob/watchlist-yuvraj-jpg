@@ -69,11 +69,14 @@ public class MovieController {
 
     //delete
     // Delete a director and its movies from the records
-        @DeleteMapping("/delete-director-by-name")
-    public ResponseEntity deleteDirectorByName(@RequestParam String dname){
+
+    @DeleteMapping("/delete-director-by-name")
+    public ResponseEntity deleteDirectorByName(@RequestParam("director") String dname) {
+
         movieservice.deleteDirectorByName(dname);
-        return new ResponseEntity<>("Director and its movies are deleted from records successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Director and its movies are deleted from records successfully" ,HttpStatus.OK);
     }
+
     // Delete all directors and all movies by them from the records
     @DeleteMapping("/delete-all-directors")
     public ResponseEntity deleteAllDirectors(){
