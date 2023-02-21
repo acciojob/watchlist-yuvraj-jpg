@@ -16,6 +16,10 @@ public class MovieRepository {
     Map<String,String> pair = new HashMap<>();
 
     //Add a movie
+
+    public MovieRepository() {
+    }
+
     public String addMovie(Movie movie){
         moviecollection.put(movie.getName(),movie);
         return "success ";

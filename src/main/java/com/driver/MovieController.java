@@ -10,6 +10,10 @@ public class MovieController {
 
     @Autowired
    MovieService movieservice;
+
+    public MovieController() {
+    }
+
     //post
        // add movie
     @PostMapping("/movies/add-movie")

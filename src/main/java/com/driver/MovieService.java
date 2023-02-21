@@ -10,6 +10,10 @@ import java.util.List;
 public class MovieService {
     @Autowired
     MovieRepository movieRepository;
+
+    public MovieService() {
+    }
+
     public String addMovie(Movie movie){
         return movieRepository.addMovie(movie);
     }
