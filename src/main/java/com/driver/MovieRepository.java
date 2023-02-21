@@ -10,9 +10,9 @@ import java.util.Map;
 
 @Repository
 public class MovieRepository {
-    Map<String,Movie> moviecollection = new HashMap<>();
-    Map<String,Director> directorcollection = new HashMap<>();
-    Map<Director,List<Movie>> pair = new HashMap<>();
+    HashMap<String,Movie> moviecollection = new HashMap<>();
+    HashMap<String,Director> directorcollection = new HashMap<>();
+    HashMap<Director,List<Movie>> pair = new HashMap<>();
     //Add a movie
      void addMovie(String mname,Movie movie){
         moviecollection.put(mname,movie);
