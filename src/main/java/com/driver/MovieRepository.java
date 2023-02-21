@@ -10,49 +10,60 @@ import java.util.Map;
 
 @Repository
 public class MovieRepository {
-
     Map<String,Movie> moviecollection = new HashMap<>();
     Map<String,Director> directorcollection = new HashMap<>();
-    Map<String,String> pair = new HashMap<>();
-
+    Map<String,List<String>> pair = new HashMap<>();
     //Add a movie
-
-    public MovieRepository() {
-    }
-
-    public String addMovie(Movie movie){
+    public void addMovie(Movie movie){
         moviecollection.put(movie.getName(),movie);
-        return "success ";
     }
     //Add a director
-    public String addDirector(Director director){
+    public void addDirector(Director director){
         directorcollection.put(director.getName(),director);
-        return "success ";
     }
     //Pair an existing movie and director
-    public String addMovieDirectorPair(String mname,String dname){
-        pair.put(mname,dname);
-        return "success ";
+    public void addMovieDirectorPair(String mname,String dname){
+        List<String> list = new ArrayList<>();
+        if(pair.containsKey(dname)){
+            list = pair.get(dname);
+            list.add(mname);
+            pair.put(dname,list);
+        }
+        else{
+            list.add(mname);
+            pair.put(dname,list);
+        }
     }
 
     //Get Movie by movie name
     public Movie getMovieByName(String name){
-        return moviecollection.get(name);
+        if(moviecollection.containsKey(name)){
+            return moviecollection.get(name);
+        }
+        else{
+            return null;
+        }
+
     }
 
     //Get Director by director name
     public Director getDirectorByName(String name){
-        return directorcollection.get(name);
+        if(directorcollection.containsKey(name)){
+            return directorcollection.get(name);
+        }
+        else{
+            return null;
+        }
+
     }
     //Get List of movies name for a given
     public List<String> getMoviesByDirectorName(String dname){
-        List<String> list = new ArrayList<>();
-        for(String mname : pair.keySet()){
-           if(pair.get(mname).equals(dname)){
-               list.add(mname);
-           }
+        if(pair.containsKey(dname)){
+            return pair.get(dname);
         }
-        return list;
+        else{
+            return null;
+        }
     }
 
     //Get List of all movies added
@@ -65,18 +76,15 @@ public class MovieRepository {
     }
 
     //Delete a director and its movies from the records
-    public String deleteDirectorByName(String dname){
-        for(String mname : pair.keySet()){
-            if(pair.get(mname).equals(dname)){
-                pair.remove(mname);
-            }
+    public void deleteDirectorByName(String dname){
+        if(directorcollection.containsKey(dname)){
+            directorcollection.remove(dname);
         }
-        return "success ";
     }
     //Delete all directors and all movies by them from the records
-    public String deleteAllDirectors(){
+    public void deleteAllDirectors(){
         directorcollection.clear();
-        return "success ";
+        moviecollection.clear();
     }
 
 

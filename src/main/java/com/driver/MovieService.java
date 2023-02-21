@@ -6,22 +6,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
 public class MovieService {
     @Autowired
     MovieRepository movieRepository;
-
-    public MovieService() {
+    public void addMovie(Movie movie){
+        movieRepository.addMovie(movie);
     }
-
-    public String addMovie(Movie movie){
-        return movieRepository.addMovie(movie);
+    public void addDirector(Director director){
+         movieRepository.addDirector(director);
     }
-    public String addDirector(Director director){
-        return movieRepository.addDirector(director);
-    }
-    public String addMovieDirectorPair(String mname,String dname){
-        return movieRepository.addMovieDirectorPair(mname,dname);
+    public void addMovieDirectorPair(String mname,String dname){
+        movieRepository.addMovieDirectorPair(mname,dname);
     }
     public Movie getMovieByName(String name){
         return movieRepository.getMovieByName(name);
@@ -35,10 +30,10 @@ public class MovieService {
     public List<Movie> findAllMovies(){
         return movieRepository.findAllMovies();
     }
-    public String deleteDirectorByName(String dname){
-        return movieRepository.deleteDirectorByName(dname);
+    public void deleteDirectorByName(String dname){
+        movieRepository.deleteDirectorByName(dname);
     }
-    public String deleteAllDirectors(){
-        return movieRepository.deleteAllDirectors();
+    public void deleteAllDirectors(){
+        movieRepository.deleteAllDirectors();
     }
 }
